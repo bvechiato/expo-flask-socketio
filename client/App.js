@@ -2,30 +2,31 @@ import { View, Text, Pressable } from 'react-native';
 import { socket } from './socket';
 
 export default function App() {
-  const CLIENT_ID = 1234567890;
+  const CLIENT_ID = 1234567890;       // Dummy client id
 
-  // - Event handlers
+  // - EVENT HANDLERS
   useEffect(() => {
-        socket.on('event1_success', ({ message }) => {
-          alert(message);
-        });
+    socket.on('event1_success', ({ message }) => {
+      alert(message);
+    });
 
-        socket.on('event2_success', ({ message }) => {
-          alert(message);
-        });
+    socket.on('event2_success', ({ message }) => {
+      alert(message);
+    });
 
-        socket.on('event3_success', ({ message }) => {
-          alert(message);
-        });
+    socket.on('event3_success', ({ message }) => {
+      alert(message);
+    });
 
-        // Clean up event listeners when unmounting
-        return () => {
-          socket.off('event1_success');
-          socket.off('event2_success');
-          socket.off('event3_success');
-        };
+    // Clean up event listeners when unmounting
+    return () => {
+      socket.off('event1_success');
+      socket.off('event2_success');
+      socket.off('event3_success');
+    };
     }, []);
 
+    // - TRIGGERS
     return (
       <View>
         <Pressable onPress={() => socket.emit('event1')}>
